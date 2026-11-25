@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuadStick Profile Studio: see, check and print your QuadStick game profiles</title>
+<meta name="description" content="A free, offline app for QuadStick sip-and-puff game profiles. See every sip and puff on a photo of the device, catch mistakes before they reach it, switch between PlayStation and Xbox names, test it live and print a big-print card.">
+<meta name="theme-color" content="#ffffff">
+<!-- DOMAIN: when the domain is confirmed, add <link rel="canonical" href="https://DOMAIN/">
+     and make og:image / og:url absolute (https://DOMAIN/assets/img/og.jpg). -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="QuadStick Profile Studio">
+<meta property="og:description" content="See every sip and puff on a photo of your QuadStick, check the profile before it reaches the device, and print a card for beside the screen. Free and offline.">
+<meta property="og:image" content="assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/young-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/atkinson-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+  // Before first paint: mark that scripts run, and settle motion so nothing flashes.
+  (function () {
+    var d = document.documentElement, saved = null;
+    d.classList.add('js');
+    try { saved = localStorage.getItem('qs-motion'); } catch (e) {}
+    var calm = saved ? saved === 'off' : matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (calm) d.classList.add('calm');
+  })();
+</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+
+<header class="top" id="top">
+  <div class="top__in">
+    <a class="brand" href="#main" aria-label="QuadStick Profile Studio, back to the start">
+      <img src="assets/img/emblem.webp" alt="" width="44" height="44">
+      <span class="brand__name"><span class="brand__q">QuadStick</span> Profile Studio</span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#see-it">See it</a>
+      <a href="#test-it">Test it</a>
+      <a href="#story">Why it exists</a>
+      <a href="#get-it">Get it</a>
+    </nav>
+    <button class="motion" type="button" role="switch" aria-checked="true" data-motion-toggle>
+      <span class="motion__dot" aria-hidden="true"></span><span class="motion__label">Motion</span>
+    </button>
+    <a class="btn btn--ink btn--small" href="https://github.com/Crypto69/quadstickprofiles/releases/latest"><span>Download</span></a>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+<!-- ============ HERO: the spreadsheet falls away, the device comes forward ============ -->
+<section class="hero" data-hero aria-labelledby="hero-title">
+  <div class="hero__stage">
+    <div class="hero__sheet" aria-hidden="true" data-sheet>
+      <pre>QuadStick Configuration,Version 1.4,,ddfortnite
+Profile Name,,Left joy,
+ddfortnite.csv,,Normal,
+Output or Function,Function,usb,
+increment_mode,normal,right_sip,
+decrement_mode,normal,right_puff,
+dpad_N,normal,
+dpad_NE,normal,
+dpad_E,normal,
+dpad_SE,normal,
+dpad_S,normal,
+dpad_SW,normal,
+dpad_W,normal,
+dpad_NW,normal,
+left_joy_left,normal,left,
+left_joy_right,normal,right,
+left_joy_up,normal,up,
+left_joy_down,normal,down,
+right_joy_left,normal,
+right_joy_right,normal,
+right_joy_up,normal,
+right_joy_down,normal,
+left_1,normal,mp_left_puff,
+left_2,normal,mp_center_sip,
+left_3,normal,mp_left_center_puff,
+right_1,normal,mp_right_puff,
+right_2,normal,mp_center_puff,
+right_3,normal,mp_right_center_puff,
+x,normal,mp_left_sip,
+circle,normal,mp_left_sip_soft,
+square,normal,lip,
+triangle,normal,mp_right_sip,
+select,normal,
+ps3,normal,mp_center_sip_soft,
+start,normal,
+left_1,normal,
+right_1,normal,
+touch,normal,
+left_3,normal,mp_left_center_sip,
+right_3,normal,mp_left_center_sip,
+
+Profile Name,,Left joy,
+,,Normal,
+Output or Function,Function,usb,
+increment_mode,normal,right_sip,
+decrement_mode,normal,right_puff,
+left_joy_up,normal,up,
+left_joy_down,normal,down,
+right_joy_left,normal,left,
+right_joy_right,normal,right,</pre>
+    </div>
+
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <h1 class="hero__title" id="hero-title" data-split>Simple visual game profile setup. No more spreadsheets.</h1>
+        <p class="hero__lede" data-reveal>QuadStick Profile Studio shows your game profiles on a photo of the device, checks them before they reach it, and prints a card to keep by the screen.</p>
+        <div class="hero__cta" data-reveal>
+          <a class="btn btn--ink" href="https://github.com/Crypto69/quadstickprofiles/releases/latest"><span>Download for Mac or Windows</span></a>
+          <a class="btn btn--line" href="#problem"><span>See what it fixes</span></a>
+        </div>
+        <p class="hero__fine" data-reveal>Free. Works offline. No account, and nothing leaves your computer.</p>
+      </div>
+
+      <figure class="hero__device" aria-labelledby="hero-cap">
+        <div class="device" data-device>
+          <svg class="rings" viewBox="0 0 200 200" aria-hidden="true">
+            <circle class="rings__c rings__c--sip" cx="100" cy="100" r="58"/>
+            <circle class="rings__c rings__c--puff" cx="100" cy="100" r="76"/>
+            <circle class="rings__c rings__c--sip" cx="100" cy="100" r="94"/>
+          </svg>
+          <img class="device__img" src="assets/img/device-front.webp" width="1348" height="1167"
+               alt="The QuadStick: a black box with five status lights, a joystick, a mouthpiece with three holes, a side tube and a lip button below the mouthpiece.">
+          <ul class="callouts" data-callouts>
+            <li class="co co--down-left" style="--x:38.4%;--y:56.6%" data-at="0.14"><span class="co__dot"></span><span class="co__chip"><b>Puff, left hole</b><span>L1</span></span></li>
+            <li class="co co--up-left" data-small-hide style="--x:49%;--y:33%" data-at="0.30"><span class="co__dot"></span><span class="co__chip"><b>Joystick</b><span>Left stick</span></span></li>
+            <li class="co co--down" style="--x:48.4%;--y:66.5%" data-at="0.46"><span class="co__dot"></span><span class="co__chip"><b>Lip button</b><span>Square</span></span></li>
+            <li class="co co--up-right" data-small-hide style="--x:58.6%;--y:56.6%" data-at="0.62"><span class="co__dot"></span><span class="co__chip"><b>Puff, right hole</b><span>R1</span></span></li>
+            <li class="co co--down-right" style="--x:74.6%;--y:56.6%" data-at="0.78"><span class="co__dot"></span><span class="co__chip"><b>Sip, side tube</b><span>Next mode</span></span></li>
+          </ul>
+        </div>
+        <figcaption id="hero-cap" class="hero__cap">The Fortnite starter profile, first mode, shown on the device you play with.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE PROBLEM: three cards that stack like pages ============ -->
+<section class="sec problem" id="problem" aria-labelledby="problem-title">
+  <div class="wrap">
+    <div class="problem__head">
+      <h2 class="h2" id="problem-title" data-split>Today, a profile is a spreadsheet you can’t see into.</h2>
+      <p class="lede" data-reveal>A QuadStick is a game controller for people who play with their mouth, lips and chin: sips, puffs, a lip button and a joystick moved with the head. Each game’s setup lives in a dense Google Sheet, and the Sheet keeps three secrets.</p>
+    </div>
+
+    <ol class="stack" data-stack>
+      <li class="slab slab--sip" style="--i:0">
+        <div class="slab__text">
+          <h3 class="h3">You can’t see which sip does what.</h3>
+          <p>To find out what a puff on the left hole does, you search every row for <code>mp_left_puff</code>. Then you do it again for the next mode, and the next.</p>
+        </div>
+        <div class="slab__proof" aria-label="Five rows from a real profile">
+          <table class="rows">
+            <tbody>
+              <tr><th scope="row">24</th><td>left_1,normal,</td><td class="hit">mp_left_puff,</td></tr>
+              <tr><th scope="row">25</th><td>left_2,normal,</td><td>mp_center_sip,</td></tr>
+              <tr><th scope="row">26</th><td>left_3,normal,</td><td>mp_left_center_puff,</td></tr>
+              <tr><th scope="row">27</th><td>right_1,normal,</td><td>mp_right_puff,</td></tr>
+              <tr><th scope="row">28</th><td>right_2,normal,</td><td>mp_center_puff,</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </li>
+      <li class="slab slab--puff" style="--i:1">
+        <div class="slab__text">
+          <h3 class="h3">PlayStation and Xbox use different words.</h3>
+          <p>The same trigger is <code>right_2</code> in one sheet and <code>right_trigger</code> in the other. Move a profile to the other console and you rename every row by hand.</p>
+        </div>
+        <div class="slab__proof slab__pairs" aria-label="Three buttons with their PlayStation and Xbox names">
+          <p><span>right_2</span><span>right_trigger</span></p>
+          <p><span>x</span><span>A</span></p>
+          <p><span>left_1</span><span>left_bumper</span></p>
+        </div>
+      </li>
+      <li class="slab slab--ink" style="--i:2">
+        <div class="slab__text">
+          <h3 class="h3">One wrong character, and the file won’t load.</h3>
+          <p>A comma in a mode name reads as the next cell. A line break reads as a new line. Nothing warns you: you find out when the QuadStick won’t read the profile.</p>
+        </div>
+        <div class="slab__proof" aria-label="A mode name with a stray comma">
+          <p class="bad"><span class="bad__row">Profile Name,,</span><span class="bad__name">Build<mark>,</mark> edit</span><span class="bad__row">,</span></p>
+          <p class="bad__note">That comma splits the name into two cells.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ THE STORY: the pivot ============ -->
+<section class="sec story" id="story" aria-labelledby="story-title">
+  <div class="wrap story__grid">
+    <div class="story__mark" aria-hidden="true">
+      <img src="assets/img/emblem.webp" alt="" width="192" height="192" loading="lazy" data-depth="-0.08">
+    </div>
+    <blockquote class="story__quote" data-reveal>
+      <p id="story-title">“That spreadsheet was driving me crazy.”</p>
+    </blockquote>
+    <div class="story__body" data-reveal>
+      <p>The studio was built by a QuadStick player. A new QuadStick arrived, with the help of David Nelson at <a href="https://www.innovativeat.com.au/">Innovative AT</a>, who supplies adaptive gaming equipment across Australia. Working out how profiles and modes fitted together was hard at first, and the spreadsheet wasn’t clear enough to learn from.</p>
+      <p>So it became a small app, to configure things faster and to learn how the whole thing works. It grew from there. If it helps you, say hello: feedback and ideas are welcome on <a href="https://github.com/Crypto69/quadstickprofiles/issues">GitHub</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIBRARY ============ -->
+<section class="sec library" id="see-it" aria-labelledby="lib-title">
+  <div class="wrap lib__grid">
+    <div class="lib__text">
+      <h2 class="h2" id="lib-title" data-split>Bring the profiles you already have.</h2>
+      <p class="lede" data-reveal>Import the <code>.xlsx</code> you downloaded from the Google Sheet, or a <code>.csv</code> copied straight off the QuadStick. Or start from a bundled profile for Fortnite or Call of Duty.</p>
+      <p data-reveal>Every profile in one list: how many modes, which console’s names, what it’s called on the device, and whether it will load cleanly.</p>
+    </div>
+    <div class="lib__visual">
+      <div class="shot shot--window" data-depth="0.04">
+        <img src="assets/shots/01-library.webp" width="1440" height="960" loading="lazy"
+             alt="The profile library: a list of profiles, each with its mode count, console names, filename and a green ‘Clean’ badge.">
+      </div>
+      <span class="file file--xlsx" data-depth="-0.14" aria-hidden="true">Fortnite.xlsx</span>
+      <span class="file file--csv" data-depth="-0.24" aria-hidden="true">codawps.csv</span>
+      <span class="file file--start" data-depth="-0.08" aria-hidden="true">Call of Duty starter</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE DEVICE IS THE WAY IN (sticky scrollytelling) ============ -->
+<section class="sec device-way" aria-labelledby="way-title">
+  <div class="wrap">
+    <h2 class="h2 way__title" id="way-title" data-split>The device is the way in.</h2>
+    <div class="way" data-scrolly>
+      <div class="way__frame" aria-hidden="true">
+        <div class="shot shot--window way__stack">
+          <img src="assets/shots/02-device-view.webp" width="1440" height="960" alt="" loading="lazy" class="is-on" data-frame="0">
+          <img src="assets/shots/03-device-part-selected.webp" width="1440" height="960" alt="" loading="lazy" data-frame="1">
+          <img src="assets/shots/04-rows.webp" width="1440" height="960" alt="" loading="lazy" data-frame="2">
+          <img src="assets/shots/05-mode-map.webp" width="1440" height="960" alt="" loading="lazy" data-frame="3">
+        </div>
+      </div>
+      <div class="way__steps">
+        <article class="step" data-step="0">
+          <h3 class="h3">Click the part you breathe into.</h3>
+          <p>The editor is a photo of the real QuadStick. The three mouthpiece holes, the side tube, the lip button, the joystick and the jacks on the back can all be clicked. Beside it, the mode as a grid: sip and puff, soft and hard, each hole alone and in pairs.</p>
+          <img class="step__shot" src="assets/shots/02-device-view.webp" width="1440" height="960" loading="lazy" alt="The device view: the QuadStick photo with labelled parts, beside a grid of sips and puffs for each hole.">
+        </article>
+        <article class="step" data-step="1">
+          <h3 class="h3">Narrow it to one part.</h3>
+          <p>Point at a part and it lights up, along with everywhere it is used. Click it and the page shows only that part, with a clear way back out.</p>
+          <img class="step__shot" src="assets/shots/03-device-part-selected.webp" width="1440" height="960" loading="lazy" alt="One part selected: only the left hole’s mappings are shown.">
+        </article>
+        <article class="step" data-step="2">
+          <h3 class="h3">Rows, when you want the detail.</h3>
+          <p>The raw rows, with the same row numbers as the Google Sheet. Output, how it behaves, input, and your own note. Rows that nothing triggers fold away.</p>
+          <img class="step__shot" src="assets/shots/04-rows.webp" width="1440" height="960" loading="lazy" alt="The rows view: numbered rows with output, behaviour, input and a note.">
+        </article>
+        <article class="step" data-step="3">
+          <h3 class="h3">A map of every mode.</h3>
+          <p>An arrow for each way between modes, labelled with the input that does it. A mode you can’t get out of is flagged before it traps you mid-game.</p>
+          <img class="step__shot" src="assets/shots/05-mode-map.webp" width="1440" height="960" loading="lazy" alt="The mode map: modes as boxes with labelled arrows between them.">
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHECKS ============ -->
+<section class="sec checks" aria-labelledby="checks-title">
+  <div class="wrap checks__grid">
+    <div class="checks__head">
+      <h2 class="h2" id="checks-title" data-split>It tells you what’s wrong. And what isn’t.</h2>
+      <p class="lede" data-reveal>Every edit is checked the way the QuadStick would read it. Real problems are kept apart from plain facts about your profile, and a profile with an error can’t be exported until it’s fixed.</p>
+    </div>
+    <div class="verdicts">
+      <div class="verdict verdict--fix" data-reveal>
+        <h3 class="verdict__title">Problems</h3>
+        <ul>
+          <li><span class="sev sev--err">Error</span> A mode name holds a comma, which the QuadStick reads as the next cell.</li>
+          <li><span class="sev sev--warn">Warning</span> Mode 4 has no way out.</li>
+          <li><span class="sev sev--warn">Warning</span> This controller mode hides the flash drive on firmware 2373.</li>
+        </ul>
+        <p class="blocked"><span class="blocked__btn" aria-hidden="true">Export</span> Export waits until the errors are fixed.</p>
+      </div>
+      <div class="verdict verdict--fact" data-reveal>
+        <h3 class="verdict__title">What this profile does</h3>
+        <ul>
+          <li>A chin press fires Square and moves to the next mode. That’s a design, not a fault.</li>
+          <li>Six modes, 33 rows in use in the first.</li>
+          <li>Uses PlayStation names.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="checks__shot shot shot--window" data-depth="0.05">
+      <img src="assets/shots/12-findings.webp" width="1440" height="960" loading="lazy" alt="The findings panel, split into ‘Problems’ and ‘What this profile does’.">
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONVERT ============ -->
+<section class="sec convert" aria-labelledby="convert-title">
+  <div class="wrap convert__grid">
+    <div class="convert__text">
+      <h2 class="h2" id="convert-title" data-split>PlayStation or Xbox. One press.</h2>
+      <p class="lede" data-reveal>Profiles are kept under one set of names and shown in whichever console’s you choose. Try it here.</p>
+      <button class="btn btn--mode" type="button" aria-pressed="false" data-console-toggle><span data-console-label>Show Xbox names</span></button>
+    </div>
+    <div class="pairs" data-console="ps" aria-live="polite">
+      <table class="pairs__t">
+        <caption class="sr-only" data-console-caption>Buttons with their PlayStation names</caption>
+        <thead><tr><th scope="col">Button</th><th scope="col">In the file</th></tr></thead>
+        <tbody>
+          <tr><td><span class="flip" data-ps="Cross" data-xb="A">Cross</span></td><td><code class="flip" data-ps="x" data-xb="A">x</code></td></tr>
+          <tr><td><span class="flip" data-ps="Circle" data-xb="B">Circle</span></td><td><code class="flip" data-ps="circle" data-xb="B">circle</code></td></tr>
+          <tr><td><span class="flip" data-ps="L1" data-xb="LB">L1</span></td><td><code class="flip" data-ps="left_1" data-xb="left_bumper">left_1</code></td></tr>
+          <tr><td><span class="flip" data-ps="R2" data-xb="RT">R2</span></td><td><code class="flip" data-ps="right_2" data-xb="right_trigger">right_2</code></td></tr>
+          <tr><td><span class="flip" data-ps="R3" data-xb="RS">R3</span></td><td><code class="flip" data-ps="right_3" data-xb="right_stick">right_3</code></td></tr>
+          <tr><td><span class="flip" data-ps="PS button" data-xb="Xbox button">PS button</span></td><td><code class="flip" data-ps="ps3" data-xb="guide">ps3</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTER (dark, like the device) ============ -->
+<section class="sec tester" id="test-it" aria-labelledby="tester-title">
+  <div class="wrap tester__grid">
+    <div class="tester__text">
+      <h2 class="h2" id="tester-title" data-split>Breathe, and watch it light up.</h2>
+      <p class="lede" data-reveal>Plug in the QuadStick and the tester shows every sip, puff, lip press and joystick move the moment it happens. A guided test then walks through each tube, one at a time.</p>
+      <p class="tester__note" data-reveal>The real tester listens to the device over USB and opens in Chrome or Edge. This one is a pretend QuadStick: pick a tube, then what to do with it.</p>
+    </div>
+
+    <div class="play" data-play>
+      <div class="play__device">
+        <img src="assets/img/device-front-760.webp" width="760" height="658" loading="lazy" alt="The QuadStick, with the mouthpiece holes, side tube and lip button marked.">
+        <span class="hot" data-hot="left"   style="--x:38.4%;--y:56.6%" aria-hidden="true"></span>
+        <span class="hot" data-hot="centre" style="--x:48.4%;--y:56.6%" aria-hidden="true"></span>
+        <span class="hot" data-hot="right"  style="--x:58.6%;--y:56.6%" aria-hidden="true"></span>
+        <span class="hot" data-hot="side"   style="--x:74.6%;--y:56.6%" aria-hidden="true"></span>
+        <span class="hot hot--lip" data-hot="lip" style="--x:48.3%;--y:67%" aria-hidden="true"></span>
+      </div>
+      <div class="play__controls">
+        <fieldset class="seg">
+          <legend>Tube</legend>
+          <button type="button" aria-pressed="true" data-tube="left">Left</button>
+          <button type="button" aria-pressed="false" data-tube="centre">Centre</button>
+          <button type="button" aria-pressed="false" data-tube="right">Right</button>
+          <button type="button" aria-pressed="false" data-tube="side">Side tube</button>
+        </fieldset>
+        <fieldset class="seg seg--act">
+          <legend>Do</legend>
+          <button type="button" class="act act--sip" data-act="sip">Sip</button>
+          <button type="button" class="act act--sip-soft" data-act="sip_soft">Soft sip</button>
+          <button type="button" class="act act--puff" data-act="puff">Puff</button>
+          <button type="button" class="act act--puff-soft" data-act="puff_soft">Soft puff</button>
+          <button type="button" class="act act--lip" data-act="lip">Press the lip button</button>
+        </fieldset>
+        <div class="now" role="status" aria-live="polite">
+          <p class="now__label">Right now</p>
+          <p class="now__what" data-now-what>Nothing yet</p>
+          <p class="now__does" data-now-does>Pick an action above.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tester__shot shot shot--window" data-depth="0.06">
+      <img src="assets/shots/13-tester.webp" width="1440" height="890" loading="lazy" alt="The tester in the app: the device photo with the left hole lit orange for a hard puff, a guided test step, and a results table.">
+    </div>
+  </div>
+</section>
+
+<!-- ============ ONTO THE QUADSTICK (a real sequence) ============ -->
+<section class="sec onto" aria-labelledby="onto-title">
+  <div class="wrap">
+    <div class="onto__head">
+      <h2 class="h2" id="onto-title" data-split>Onto the QuadStick, with a backup first.</h2>
+      <p class="lede" data-reveal>In the desktop app, plug the QuadStick in and press one button. The app changes the drive only when you ask, and backs it up before it does.</p>
+    </div>
+    <ol class="steps4">
+      <li class="s4" data-reveal>
+        <span class="s4__n" aria-hidden="true">1</span>
+        <h3 class="h3">See what’s on it.</h3>
+        <p>The profiles on the drive, in the order the QuadStick counts them, with the status lights that pick each one.</p>
+        <div class="shot shot--card"><img src="assets/shots/16-on-device.webp" width="1132" height="413" loading="lazy" alt="A list of the profiles on the QuadStick, each with its five-light pattern."></div>
+      </li>
+      <li class="s4" data-reveal>
+        <span class="s4__n" aria-hidden="true">2</span>
+        <h3 class="h3">Back it up.</h3>
+        <p>One press saves every file on the drive, with the date. Restore any backup later.</p>
+        <div class="shot shot--card"><img src="assets/shots/14-backup.webp" width="1132" height="144" loading="lazy" alt="The backup bar: Back up the QuadStick, with the date of the last backup."></div>
+      </li>
+      <li class="s4" data-reveal>
+        <span class="s4__n" aria-hidden="true">3</span>
+        <h3 class="h3">Tick the profiles you want.</h3>
+        <p>Choose which ones go on, then press <em>Put my profiles on the QuadStick</em>.</p>
+        <div class="shot shot--card"><img src="assets/shots/17-put-on-quadstick.webp" width="640" height="881" loading="lazy" alt="A list of profiles with tick boxes and a ‘Put my profiles on the QuadStick’ button."></div>
+      </li>
+      <li class="s4" data-reveal>
+        <span class="s4__n" aria-hidden="true">4</span>
+        <h3 class="h3">Unplug when it says so.</h3>
+        <p>The app tells you when it’s done and safe to unplug.</p>
+        <div class="shot shot--card"><img src="assets/shots/18-put-on-done.webp" width="640" height="392" loading="lazy" alt="A message saying the profiles are on the QuadStick and it is safe to unplug."></div>
+      </li>
+    </ol>
+    <div class="byhand" data-reveal>
+      <div class="byhand__text">
+        <h3 class="h3">Rather copy it yourself?</h3>
+        <p>Export a <code>.csv</code> that is byte-for-byte what the official Google Sheet add-on makes, then tick through a five-step checklist, including how to pick the file with the status lights.</p>
+      </div>
+      <div class="shot shot--card byhand__shot"><img src="assets/shots/11-export-checklist.webp" width="640" height="934" loading="lazy" alt="The export checklist with five steps to tick off."></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRINT ============ -->
+<section class="sec print" aria-labelledby="print-title">
+  <div class="wrap print__grid">
+    <div class="print__text">
+      <h2 class="h2" id="print-title" data-split>A card to tape beside the screen.</h2>
+      <p class="lede" data-reveal>No more memorising sips and puffs. Print a reference card with one page per mode, in type big enough to read from across the room, or a one-page summary of the whole profile.</p>
+      <p data-reveal>The same teal for sip and orange for puff as on screen, so the card and the app look like the same thing.</p>
+    </div>
+    <div class="sheets" aria-label="Three printed pages">
+      <figure class="sheet sheet--a" data-depth="-0.05"><img src="assets/shots/09a-print-orientation.webp" width="794" height="1124" loading="lazy" alt="Printed page one: a labelled drawing of the QuadStick for getting your bearings."></figure>
+      <figure class="sheet sheet--b" data-depth="0.08"><img src="assets/shots/09-print-mode-page.webp" width="794" height="1123" loading="lazy" alt="Printed mode page: each hole’s sip and puff with its button, in large type."></figure>
+      <figure class="sheet sheet--c" data-depth="-0.12"><img src="assets/shots/10-print-summary.webp" width="794" height="1631" loading="lazy" alt="Printed one-page summary of every mode."></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SETTINGS + LEARN ============ -->
+<section class="sec more" aria-labelledby="more-title">
+  <div class="wrap">
+    <h2 class="sr-only" id="more-title">Settings and learning</h2>
+    <div class="more__grid">
+      <article class="more__a">
+        <div class="shot shot--window" data-depth="0.04"><img src="assets/shots/07-device-settings.webp" width="1440" height="960" loading="lazy" alt="The QuadStick’s own settings, each with a plain explanation."></div>
+        <h3 class="h3" data-reveal>The QuadStick’s own settings, in plain words.</h3>
+        <p data-reveal>The device keeps its own settings in <code>prefs.csv</code>: sensitivity, the line between soft and hard, and more. Each one is explained, along with what happens if you leave it alone.</p>
+      </article>
+      <article class="more__b">
+        <h3 class="h3" data-reveal>Learn how it works.</h3>
+        <p data-reveal>Nine short pages, with moving pictures, on how sips, puffs, modes and profiles fit together. Read them before you change anything, or come back when something surprises you.</p>
+        <div class="video">
+          <video controls preload="none" playsinline poster="assets/img/poster-how-it-works.webp" width="1920" height="1080">
+            <source src="assets/video/how-it-works.mp4" type="video/mp4">
+            <a href="assets/video/how-it-works.mp4">Watch the ‘How it works’ video</a>
+          </video>
+        </div>
+        <p class="video__cap">The nine ‘How it works’ pages in 26 seconds. No sound.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOUR VIDEO ============ -->
+<section class="sec tour" aria-labelledby="tour-title">
+  <div class="wrap tour__grid">
+    <h2 class="h2 tour__title" id="tour-title" data-split>Half a minute with the app.</h2>
+    <div class="tour__video video" data-reveal>
+      <video controls preload="none" playsinline poster="assets/img/poster-app-tour.webp" width="1920" height="1080">
+        <source src="assets/video/app-tour.mp4" type="video/mp4">
+        <a href="assets/video/app-tour.mp4">Watch the app tour</a>
+      </video>
+    </div>
+    <p class="video__cap tour__cap">Profiles, the device view, rows, the tester, the printed card, and putting profiles on the QuadStick. 29 seconds, no sound.</p>
+  </div>
+</section>
+
+<!-- ============ WHO ============ -->
+<section class="sec who" aria-labelledby="who-title">
+  <div class="wrap who__grid">
+    <h2 class="h2 who__title" id="who-title" data-split>For the player, and everyone who sets it up.</h2>
+    <ul class="who__list">
+      <li class="who__item who__item--sip" data-reveal>
+        <h3 class="h3">QuadStick players</h3>
+        <p>See your own setup at a glance, and change it without breaking it.</p>
+      </li>
+      <li class="who__item who__item--puff" data-reveal>
+        <h3 class="h3">Carers and family</h3>
+        <p>Get a new game working without learning the spreadsheet first.</p>
+      </li>
+      <li class="who__item who__item--mode" data-reveal>
+        <h3 class="h3">Occupational therapists</h3>
+        <p>Test every tube in a session, and send each person home with a printed card.</p>
+      </li>
+      <li class="who__item who__item--ink" data-reveal>
+        <h3 class="h3">Adaptive-gaming suppliers</h3>
+        <p>Hand over a QuadStick with profiles that are checked, tested and backed up.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ BEFORE / AFTER ============ -->
+<section class="sec saves" aria-labelledby="saves-title">
+  <div class="wrap">
+    <h2 class="h2 saves__title" id="saves-title" data-split>Less hunting. Fewer surprises.</h2>
+    <table class="swap">
+      <caption class="sr-only">What changes when you use the studio</caption>
+      <thead><tr><th scope="col">Before</th><th scope="col">With the studio</th></tr></thead>
+      <tbody>
+        <tr data-reveal><td><s>Search spreadsheet rows for one tube</s></td><td>Click the tube on the photo</td></tr>
+        <tr data-reveal><td><s>Find out when the device won’t load the file</s></td><td>Problems caught before export, in plain words</td></tr>
+        <tr data-reveal><td><s>Hope nothing on the drive gets lost</s></td><td>A backup before every change</td></tr>
+        <tr data-reveal><td><s>Rename every button for the other console</s></td><td>One press</td></tr>
+        <tr data-reveal><td><s>Memorise every sip and puff</s></td><td>A big-print card beside the screen</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ ACCESSIBILITY ============ -->
+<section class="sec access" aria-labelledby="access-title">
+  <div class="wrap access__grid">
+    <h2 class="h2" id="access-title" data-split>Built to be used with one pointer.</h2>
+    <div class="access__body">
+      <p class="lede" data-reveal>The app is used by people who move a pointer with their mouth or head. So nothing needs two controls held at once, nothing needs dragging or hovering, every target is large, and everything works from the keyboard.</p>
+      <p data-reveal>This site follows the same rules. Movement here is optional: turn it off and every word stays where you can read it.</p>
+      <button class="btn btn--line" type="button" data-motion-toggle><span data-motion-label>Turn motion off</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GET IT ============ -->
+<section class="sec get" id="get-it" aria-labelledby="get-title">
+  <div class="wrap get__grid">
+    <div class="get__head">
+      <img class="get__logo" src="assets/img/logo.webp" width="720" height="587" loading="lazy" alt="QuadStick Profile Studio">
+      <h2 class="h2" id="get-title" data-split>Free, offline, and yours.</h2>
+      <p class="lede" data-reveal>No account. No internet connection needed. Nothing is collected or sent: your profiles and backups stay on your own computer.</p>
+      <a class="btn btn--ink" href="https://github.com/Crypto69/quadstickprofiles/releases/latest"><span>Download the latest version</span></a>
+    </div>
+    <ul class="where">
+      <li class="where__item" data-reveal>
+        <h3 class="h3">Mac</h3>
+        <p>Download the app from the releases page.</p>
+        <!-- STORE BADGE: Mac App Store. When the listing is live, replace the <p class="soon"> below with
+             <a href="APP STORE URL"><img src="assets/img/badge-mac-app-store.svg" alt="Download on the Mac App Store" width="156" height="40"></a> -->
+        <p class="soon">Mac App Store version in Apple’s review.</p>
+      </li>
+      <li class="where__item" data-reveal>
+        <h3 class="h3">Windows</h3>
+        <p>Download the app from the releases page.</p>
+        <!-- STORE BADGE: Microsoft Store. When the listing is live, replace the <p class="soon"> below with
+             <a href="MICROSOFT STORE URL"><img src="assets/img/badge-microsoft-store.svg" alt="Get it from Microsoft" width="156" height="56"></a> -->
+        <p class="soon">Microsoft Store listing on the way.</p>
+      </li>
+      <li class="where__item" data-reveal>
+        <h3 class="h3">A home NAS</h3>
+        <p>Run it in Docker and use it from any browser at home.</p>
+        <pre class="cmd"><code>docker compose up --build -d</code></pre>
+      </li>
+      <li class="where__item" data-reveal>
+        <h3 class="h3">The command line</h3>
+        <p>Check, convert and print without the app.</p>
+        <pre class="cmd"><code>qsprofile check my-profile.xlsx</code></pre>
+      </li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <p class="foot__brand"><img src="assets/img/emblem.webp" alt="" width="44" height="44" loading="lazy"> QuadStick Profile Studio</p>
+    <ul class="foot__links">
+      <li><a href="https://github.com/Crypto69/quadstickprofiles">Source on GitHub</a></li>
+      <li><a href="https://github.com/Crypto69/quadstickprofiles/blob/main/PRIVACY.md">Privacy</a></li>
+      <li><a href="https://github.com/Crypto69/quadstickprofiles/issues">Feedback and help</a></li>
+      <li><a href="#main">Back to the top</a></li>
+    </ul>
+    <p class="foot__fine">An independent project, not made by or affiliated with QuadStick. This site uses no cookies, no trackers and no fonts from anywhere else.</p>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>
