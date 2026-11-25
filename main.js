@@ -32,22 +32,6 @@
     if (!saved) setCalm(e.matches, false);
   });
 
-  /* ---------- hero: turn the raw rows into the spreadsheet they came from ---------- */
-  const pre = document.querySelector('[data-sheet] pre');
-  if (pre) {
-    const t = document.createElement('table');
-    t.className = 'xsheet';
-    const head = '<thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>';
-    const body = pre.textContent.split('\n').slice(0, 44).map((line, i) => {
-      const c = line.split(',').slice(0, 4);
-      while (c.length < 4) c.push('');
-      const cls = (v) => (/^mp_|_sip|_puff|^lip$/.test(v) ? ' class="k"' : /_mode$/.test(v) ? ' class="o"' : '');
-      return `<tr><th>${i + 1}</th>${c.map((v) => `<td${cls(v)}>${v.replace(/[<&]/g, '')}</td>`).join('')}</tr>`;
-    }).join('');
-    t.innerHTML = head + '<tbody>' + body + '</tbody>';
-    pre.replaceWith(t);
-  }
-
   /* ---------- split headings into words for the line reveal ---------- */
   $$('[data-split]').forEach((el) => {
     const words = el.textContent.trim().split(/\s+/);

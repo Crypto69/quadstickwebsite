@@ -167,23 +167,20 @@ main:focus { outline: none; }
   translate: 0 calc(var(--p) * -30vh); scale: calc(1 + var(--p) * .08);
   opacity: calc(1 - var(--p) * 1.1); filter: blur(calc(var(--p) * 5px));
 }
-.hero__sheet pre {
-  margin: 0; height: 100%; padding: calc(var(--hdr) + 12px) var(--m) 0 52%;
-  font-size: 15px; line-height: 1.7; color: #c9c9c2; white-space: pre; overflow: hidden;
-}
-/* The spreadsheet itself, tilted back on the desk behind the device. */
+/* The real Google Sheet, tilted back on the desk behind the device. */
 .xsheet {
-  position: absolute; right: -6vw; top: calc(var(--hdr) - 30px); width: min(64vw, 1000px);
-  border-collapse: collapse; background: #fff; font: 14px/1.2 var(--mono); color: #8a8a83;
+  position: absolute; right: -6vw; top: calc(var(--hdr) - 20px); width: min(64vw, 1000px); max-width: none;
+  border-radius: 6px; box-shadow: 0 50px 80px -40px rgb(29 29 27 / 35%), 0 0 0 1px rgb(29 29 27 / 8%);
   transform: perspective(1500px) rotateY(-20deg) rotateX(10deg) rotateZ(-3deg); transform-origin: 80% 20%;
-  box-shadow: 0 50px 80px -40px rgb(29 29 27 / 30%);
-  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 96%); mask-image: linear-gradient(180deg, #000 55%, transparent 96%);
+  -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent 98%); mask-image: linear-gradient(180deg, #000 60%, transparent 98%);
 }
-.xsheet th, .xsheet td { border: 1px solid #e2e2dc; padding: 5px 10px; text-align: left; white-space: nowrap; font-weight: 400; }
-.xsheet thead th, .xsheet tbody th { background: var(--paper-sunk); color: #a2a29a; text-align: center; }
-.xsheet tbody th { width: 3.2em; }
-.xsheet .k { color: var(--sip); }
-.xsheet .o { color: var(--puff); }
+.story__sheet {
+  position: absolute; z-index: 0; right: -8vw; top: 4%; width: min(72vw, 1150px); max-width: none; pointer-events: none;
+  opacity: .2; mix-blend-mode: multiply; filter: saturate(.7); rotate: 5deg;
+  -webkit-mask-image: linear-gradient(200deg, #000 25%, transparent 75%); mask-image: linear-gradient(200deg, #000 25%, transparent 75%);
+}
+.story { isolation: isolate; }
+.story__grid { position: relative; }
 
 .hero__grid { position: relative; width: min(1320px, 100% - 2 * var(--m)); margin-inline: auto; display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); align-items: center; }
 .hero__copy { grid-column: 1 / span 6; position: relative; z-index: 2; translate: 0 calc(var(--p) * -4vh); }
@@ -521,7 +518,8 @@ main:focus { outline: none; }
   .device { width: min(100%, 80vw, calc((100svh - var(--hdr) - 24px) * .44 * 1.155)); }
   .hero__cap { display: none; }
   .hero__sheet { -webkit-mask-image: linear-gradient(180deg, transparent 58%, #000 80%); mask-image: linear-gradient(180deg, transparent 58%, #000 80%); }
-  .xsheet { top: 50%; right: -30vw; width: 130vw; font-size: 13px; }
+  .xsheet { top: 50%; right: -24vw; width: 120vw; }
+  .story__sheet { width: 150vw; right: -40vw; top: 2%; }
   .co__chip { font-size: 13px; padding: 5px 8px 6px; border-radius: 8px; }
   .co[data-small-hide] { display: none; }
 
