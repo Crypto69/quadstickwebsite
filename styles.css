@@ -176,7 +176,7 @@ main:focus { outline: none; }
 }
 .story__sheet {
   position: absolute; z-index: 0; right: -8vw; top: 4%; width: min(72vw, 1150px); max-width: none; pointer-events: none;
-  opacity: .2; mix-blend-mode: multiply; filter: saturate(.7); rotate: 5deg;
+  opacity: .34; mix-blend-mode: multiply; filter: saturate(.8); rotate: 5deg;
   -webkit-mask-image: linear-gradient(200deg, #000 25%, transparent 75%); mask-image: linear-gradient(200deg, #000 25%, transparent 75%);
 }
 .story { isolation: isolate; }
